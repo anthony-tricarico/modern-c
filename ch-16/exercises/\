@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+struct color {
+    int red;
+    int green;
+    int blue;
+};
+
+#if 0
+const struct color magenta = {255, 0 , 255};
+#endif
+const struct color magenta = {.red = 255, .blue = 255};
+
