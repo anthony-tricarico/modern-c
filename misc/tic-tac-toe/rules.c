@@ -35,14 +35,16 @@ void put_mark(Marker *grid, struct player *p, int position) {
 
 /* Function to check if a player won by stacking the same marker across the same vertical line */
 void check_vertical_win(Marker *grid, struct player *p) {
-    int i = 0, count = 0, col = 0;
-ITER:
-    for (; col <= 9; col += 3) {
-        if (grid[i+col] == p->sign)     count++;
+    /* col is used to change column while row is used to change row */
+    int count, row = 0, col = 0;
+    for (; row <= 3; row++) {
+        count = 0;
+        for (; col <= 6; col += 3) {
+            if (grid[row+col] == p->sign)     count++;
+        }
+        col = 0;
+        if (count == 3)                     win(p);
     }
-    if (count == 3)                     win(p);
-    i++;
-    if (i != 3)                         goto ITER;
 }
 
 /* Function to check if a player won by stacking the same marker across the same horizontal line */
@@ -71,8 +73,11 @@ void check_diagonal_win(Marker *grid, struct player *p) {
 
 void check_win(Marker *grid, struct player *p) {
     check_horizontal_win(grid, p);
+    // printf("after horizontal win\n");
     check_vertical_win(grid, p);
+    //  printf("after vertical win\n");
     check_diagonal_win(grid, p);
+    // printf("after diagonal win\n");
 }
 
 /* 

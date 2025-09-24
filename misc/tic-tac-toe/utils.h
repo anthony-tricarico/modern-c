@@ -7,6 +7,7 @@
  * if that is the case */
 void check_pointer(void *p);
 void print_grid(Marker *grid);
+void print_grid_fancy(Marker *grid);
 
 
 #endif

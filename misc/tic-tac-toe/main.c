@@ -66,12 +66,14 @@ int main(void) {
         int position1, position2;
         printf("Player 1 is your turn, pick a position (1-9): \n");
         scanf("%d", &position1); 
+        getchar();
 
         put_mark(&grid[0][0], p1, position1);
         check_win(&grid[0][0], p1);
 
         printf("Player 2 is your turn, pick a position (1-9): \n");
         scanf("%d", &position2); 
+        getchar();
 
         put_mark(&grid[0][0], p2, position2);
         check_win(&grid[0][0], p2);
@@ -79,7 +81,8 @@ int main(void) {
         printf("Do you want to be reminded of the structure of the grid? (Y/n): \n");
         c = getchar();
         /* rewrite this to avoid this syntax replace with simpler if */
-        (tolower(c) == 'y') ? print_grid(&grid[0][0]) : printf("okay moving on\n");
+        if (tolower(c) == 'y')      print_grid_fancy(&grid[0][0]);
+        else                        printf("Okay, moving on\n");
     }
     return 0;
 }
